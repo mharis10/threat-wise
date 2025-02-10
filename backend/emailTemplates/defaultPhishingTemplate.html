@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>${title}</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+  }
+  .email-container {
+    max-width: 600px;
+    margin: auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #dddddd;
+  }
+  .content {
+    padding: 20px;
+    text-align: left;
+  }
+  .footer {
+    font-size: 12px;
+    text-align: center;
+    color: #999999;
+    padding: 20px;
+  }
+  .report-button {
+    padding: 10px 15px;
+    color: #ffffff !important;
+    background-color: #FF0000;
+    text-decoration: none;
+    border-radius: 4px;
+    float: right;
+  }
+</style>
+</head>
+<body>
+  <div class="email-container">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="right">
+          <a href="{{Report Phishing Url}}" class="report-button">Report</a>
+        </td>
+      </tr>
+    </table>
+    <div class="content">
+      {{Body}}
+    </div>
+  </div>
+  <img src="{{Tracking Pixel Url}}" alt="" style="display:none;" />
+</body>
+</html>

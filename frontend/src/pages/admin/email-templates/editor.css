@@ -1,0 +1,140 @@
+.treatment > .ql-container {
+	min-height: 8rem;
+}
+
+.treatment .ql-tooltip {
+	left: 0px !important;
+	top: 70px !important
+}
+
+.quill {
+	display: flex;
+  z-index: 30;
+	flex-direction: column-reverse;
+}
+
+.editor .ql-toolbar {
+	padding: 4px 12px !important;
+	background: rgba(211, 227, 241, 0.4);
+	display: flex;
+	border: 1px solid #d3e3f1 !important;
+	border-top: none !important;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	column-gap: 3px;
+}
+
+.editor .ql-toolbar > .ql-formats {
+	margin-right: 0px !important;
+}
+
+.editor .ql-toolbar > .ql-formats .ql-clean {
+	display: none;
+}
+
+.editor .ql-container {
+	border: 1px solid #d3e3f1;
+	border-top: 1px solid #d3e3f1 !important;
+	border-bottom: none !important;
+	border-top-left-radius: 4px;
+  height: 100%;
+  flex-grow: 1;
+	border-top-right-radius: 4px;
+	color: #123258;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	letter-spacing: 0.5px;
+}
+
+.editor .ql-container > .ql-blank {
+  min-height: 8rem;
+}
+
+.input .ql-container {
+	color: black;
+}
+
+.editor .ql-container > .ql-editor {
+	word-break: break-all
+}
+
+.email-content h1 {
+	display: block;
+	font-size: 2em;
+	margin-top: 0.67em;
+	margin-bottom: 0.67em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: bold;
+}
+
+.email-content h2 {
+	display: block;
+	font-size: 1.5em;
+	margin-top: 0.83em;
+	margin-bottom: 0.83em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: bold;
+}
+
+.email-content h3 {
+	display: block;
+	font-size: 1.17em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: bold;
+}
+
+.email-content a {
+	color: blue;
+	text-decoration: underline;
+}
+
+.email-content a:visited {
+	color: purple;
+}
+
+.email-content a:hover {
+	cursor: pointer;
+}
+
+.email-content a:active {
+	color: red;
+}
+
+.email-content ul,
+.email-content ol {
+	display: block;
+	padding: 0 0 0 40px;
+}
+
+.email-content ul {
+	list-style-type: disc;
+	list-style-position: inside;
+}
+
+.email-content ol {
+	list-style-type: decimal;
+	list-style-position: inside;
+}
+
+@media only screen and (max-width: 768px) {
+	.editor .ql-toolbar {
+		padding: 4px 0px !important;
+		column-gap: 1px;
+	}
+
+	.editor .ql-formats > button svg {
+		width: 15px;
+		height: 15px;
+	}
+
+	.editor .ql-formats > .ql-header {
+		width: 85px !important
+	}
+}

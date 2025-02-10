@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Welcome to PhishDefender</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+  }
+  .email-container {
+    max-width: 600px;
+    margin: auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #dddddd;
+  }
+  .header {
+    background-color: #1F5C80;
+    color: #ffffff;
+    padding: 20px 20px;
+    font-size: larger;
+    font-weight: bold;
+    text-align: center;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  .content {
+    padding: 20px;
+    text-align: center;
+  }
+  .footer {
+    font-size: 12px;
+    text-align: center;
+    color: #999999;
+    padding: 20px;
+  }
+  .button {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 20px;
+    color: #ffffff !important;
+    background-color: #FF5555;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      PhishDefender
+    </div>
+    <div class="content">
+      <h1>Welcome to PhishDefender!</h1>
+      <p>Your employee account has been created. Please click the link below to set up your password:</p>
+      <a href="{{Setup Password Url}}" class="button">Set Up Your Password</a>
+      <p>This link is only valid for <strong>1 hour</strong>. Please ensure you set a strong password for security purposes.</p>
+    </div>
+    <div class="footer">
+      &copy; 2024 PhishDefender. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contact Inquiry - PhishDefender</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #dddddd;
+        }
+        .header {
+            background-color: #1F5C80;
+            color: #ffffff;
+            padding: 20px 20px;
+            font-size: larger;
+            font-weight: bold;
+            text-align: center;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .footer {
+            font-size: 12px;
+            text-align: center;
+            color: #999999;
+            padding: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-top: 20px;
+            color: #ffffff;
+            background-color: #FF5555;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .no-link {
+            pointer-events: none;
+            cursor: default;
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            Contact Inquiry - PhishDefender
+        </div>
+        <div class="content">
+            <h1>New Contact Inquiry!</h1>
+            <p>A potential client has reached out through our contact form. Please find the details below:</p>
+            <p><strong>Client First Name:</strong> {{Client First Name}}</p>
+            <p><strong>Client Last Name:</strong> {{Client Last Name}}</p>
+            <p><strong>Client Email:</strong> <span class="no-link">{{Client Email}}</span></p>
+            <p><strong>Client Message:</strong> {{Client Message}}</p>
+            <p>Please respond to this inquiry promptly to maintain effective communication.</p>
+        </div>
+        <div class="footer">
+            &copy; 2024 PhishDefender. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>

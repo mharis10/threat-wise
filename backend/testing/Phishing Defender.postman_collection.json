@@ -1,0 +1,3014 @@
+{
+	"info": {
+		"_postman_id": "d852a429-bc3e-41f5-a1c4-c7ae609cd7b2",
+		"name": "Phishing Defender",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12342439"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const accessToken = pm.response.headers.get(\"access-token\");",
+									"const refreshToken = pm.response.headers.get(\"refresh-token\");",
+									"",
+									"",
+									"pm.collectionVariables.set('accessToken', accessToken);",
+									"pm.collectionVariables.set('refreshToken', refreshToken);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"huzaifah08@gmail.com\",\n    \"password\": \"abc123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Setup Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImZpcnN0TmFtZSI6Ikthc2hpZiIsImxhc3ROYW1lIjoiS2hhbiIsImVtYWlsIjoiaHV6YWlmYWh0YXJpcTA4QGdtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiMDkwMDc4NjAxIiwibW9iaWxlTnVtYmVyIjoiMDkwMDc4NjAxIiwiY29tcGFueUlkIjozLCJqb2JUaXRsZSI6IkNvbXBhbnkgQWRtaW4iLCJsb2NhdGlvbiI6IlBha2lzdGFuIiwiZGVwYXJ0bWVudCI6IkVuZ2luZWVyaW5nIiwibGFuZ3VhZ2UiOiJFbmdsaXNoIiwicm9sZSI6IkNvbXBhbnkgQWRtaW4iLCJzdGFydERhdGUiOiIyMDI0LTA1LTAxIiwiZW5kRGF0ZSI6IjIwMjUtMDUtMDEiLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNzE3MTM0MTYyLCJleHAiOjE3MTcxMzc3NjJ9.qu8kKLlnEp0JsODYMo4AiSl0LD5BrNf2h_ZOgydYPwg"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"newPassword\": \"abc123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/setupPassword",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"setupPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldPassword\": \"abc123\",\n    \"newPassword\": \"abc123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/updatePassword",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"updatePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Email",
+			"item": [
+				{
+					"name": "Request Demo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Huzaifah Tariq\",\n    \"email\": \"huzaifah@gmail.com\",\n    \"company\": \"221B Softwares\",\n    \"message\": \"Test Message\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/email/requestDemo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"email",
+								"requestDemo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Contact Us",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Huzaifah\",\n    \"lastName\": \"Tariq\",\n    \"email\": \"huzaifah@gmail.com\",\n    \"message\": \"Test Message\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/email/contactUs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"email",
+								"contactUs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Phishing",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    // \"employeeIds\": [27],\n    \"campaignId\": 1,\n    \"templateId\": 8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/email/phishing",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"email",
+								"phishing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"huzaifahtariq08@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/email/resetPassword",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"email",
+								"resetPassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register Super Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Huzaifah\",\n    \"lastName\": \"Tariq\",\n    \"email\": \"huzaifahtariq08@gmail.com\",\n    \"password\": \"abc123\",\n    \"phoneNumber\": \"090078601\",\n    \"mobileNumber\": \"090078601\",\n    \"jobTitle\": \"Company Admin\",\n    \"linkedin\": \"http://www.google.com\",\n    \"location\": \"Pakistan\",\n    \"department\": \"Engineering\",\n    \"language\": \"English\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/registerSuperAdmin",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"registerSuperAdmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Company Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Kashif\",\n    \"lastName\": \"Khan\",\n    \"email\": \"huzaifahtariq08@gmail.com\",\n    \"phoneNumber\": \"090078601\",\n    \"mobileNumber\": \"090078601\",\n    \"companyId\": 3,\n    \"jobTitle\": \"Company Admin\",\n    \"linkedin\": \"http://www.google.com\",\n    \"location\": \"Pakistan\",\n    \"department\": \"Engineering\",\n    \"language\": \"English\",\n    \"startDate\": \"2024-05-01\",\n    \"endDate\": \"2025-05-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/registerCompanyAdmin",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"registerCompanyAdmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Company Employee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Haris\",\n    \"lastName\": \"Rauf\",\n    \"email\": \"haris@gmail.com\",\n    \"password\": \"abc123\",\n    \"phoneNumber\": \"090078601\",\n    \"startDate\": \"2024-05-01\",\n    \"endDate\": \"2025-05-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/registerCompanyEmployee",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"registerCompanyEmployee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Employees",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/employees?startDateFrom=2020-01-01&startDateTo=2020-01-20",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "department",
+									"value": "Marketing",
+									"disabled": true
+								},
+								{
+									"key": "jobTitle",
+									"value": "Test",
+									"disabled": true
+								},
+								{
+									"key": "location",
+									"value": "Test",
+									"disabled": true
+								},
+								{
+									"key": "startDateFrom",
+									"value": "2020-01-01"
+								},
+								{
+									"key": "startDateTo",
+									"value": "2020-01-20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update My User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Huzaifah\",\n    \"lastName\": \"Tariq\",\n    \"email\": \"huzaifahtariq08@gmail.com\",\n    \"phoneNumber\": \"090078601\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Huzaifah\",\n    \"lastName\": \"Tariq\",\n    \"email\": \"huzaifahtariq08@gmail.com\",\n    \"phoneNumber\": \"090078601\",\n    \"mobileNumber\": \"090078601\",\n    \"jobTitle\": \"Test\",\n    \"location\": \"Test\",\n    \"language\": \"Test\",\n    \"lineManagerId\": 10,\n    \"startDate\": \"2020-01-15\",\n    \"endDate\": \"2020-01-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/27",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"27"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable My User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/disable/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"disable",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/disable/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"disable",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enable User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/enable/6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"enable",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Employee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/employee/51",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"employee",
+								"51"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Companies",
+			"item": [
+				{
+					"name": "Register Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Tech Innovations Inc.\",\n    \"industry\": \"Technology\",\n    \"email\": \"info@techinnovations.com\",\n    \"address\": \"1234 Tech Park, Silicon Valley, CA 94025\",\n    \"contractStartDate\": \"2024-05-01\",\n    \"contractLength\": \"3 years\",\n    \"currentMailBoxes\": 150,\n    \"maxMailBoxes\": 300,\n    \"chatgptIntegration\": true,\n    \"trainingVideos\": true,\n    \"smsPhishingSimulation\": true,\n    \"widget\": true,\n    \"rewards\": true,\n    \"price\": 1999.99\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/company",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"company"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download Data Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/company/downloadTemplate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"downloadTemplate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Employee Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/huzaifahtariq/221B Softwares/Fiverr/Orders/Kashif/Order 58 (Phishing Defender)/example_employees copy.xlsx"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/company/verifyData",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"verifyData"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Populate Employee Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/huzaifahtariq/221B Softwares/Fiverr/Orders/Kashif/Order 58 (Phishing Defender)/example_employees.xlsx"
+								},
+								{
+									"key": "duplicateActions",
+									"value": "{\"john.doe@example.com\": \"Replace\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/company/populateData",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"populateData"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/company/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Companies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/company",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"company"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update My Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Tech Innovations Inc.\",\n    \"industry\": \"Technology\",\n    \"email\": \"info@techinnovations.com\",\n    \"address\": \"1234 Tech Park, Silicon Valley, CA 94025\",\n    \"contractStartDate\": \"2024-05-01\",\n    \"contractLength\": \"3 years\",\n    \"currentMailBoxes\": 150,\n    \"maxMailBoxes\": 300,\n    \"chatgptIntegration\": true,\n    \"trainingVideos\": true,\n    \"smsPhishingSimulation\": true,\n    \"widget\": true,\n    \"rewards\": true,\n    \"price\": 1999.99\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/company/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Tech Innovations Inc.\",\n    \"industry\": \"Technology\",\n    \"email\": \"info@techinnovations.com\",\n    \"address\": \"1234 Tech Park, Silicon Valley, CA 94025\",\n    \"contractStartDate\": \"2024-05-01\",\n    \"contractLength\": \"3 years\",\n    \"currentMailBoxes\": 150,\n    \"maxMailBoxes\": 300,\n    \"chatgptIntegration\": true,\n    \"trainingVideos\": false,\n    \"smsPhishingSimulation\": false,\n    \"widget\": true,\n    \"rewards\": true,\n    \"price\": 1999.90\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/company/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable My Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/company/disable/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"disable",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable Company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/company/disable/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"disable",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Groups",
+			"item": [
+				{
+					"name": "Create Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test Group 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/group",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Groups",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/group/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"group",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update My Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test Group 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/group/me/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"group",
+								"me",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete My Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/group/me/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"group",
+								"me",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Campaigns",
+			"item": [
+				{
+					"name": "Create Campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test Campaign 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/campaign",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"campaign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Campaigns",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/campaign/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"campaign",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update My Campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test Group 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/campaign/me/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"campaign",
+								"me",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete My Campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/campaign/me/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"campaign",
+								"me",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Group Members",
+			"item": [
+				{
+					"name": "Add Group Members",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"groupId\": 2,\n    \"userIds\": [49, 50]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/groupMember/add",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"groupMember",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Group Members",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/groupMember/me/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"groupMember",
+								"me",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Group Member",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"groupId\": 2,\n    \"userId\": 50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/groupMember/remove",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"groupMember",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Campaign Recipients",
+			"item": [
+				{
+					"name": "Add Campaign Recipients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"campaignId\": 1,\n    \"userIds\": [27, 1050],\n    \"groupIds\": [2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/campaignRecipient/add",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"campaignRecipient",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Campaign Recipients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/campaignRecipient/me/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"campaignRecipient",
+								"me",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Campaign Recipients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"campaignId\": 1,\n    \"userId\": 1050\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/campaignRecipient/remove",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"campaignRecipient",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Email Templates",
+			"item": [
+				{
+					"name": "Get Valid Tags",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/emailTemplate/validTags",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"emailTemplate",
+								"validTags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Contact Inquiry\",\n    \"subject\": \"New Contact Inquiry\",\n    \"body\": \"<h1>New Contact Inquiry!</h1><p>A potential client has reached out through our contact form. Please find the details below:</p><p><strong>Client First Name:</strong> {{First Name}}</p><p><strong>Client Last Name:</strong> {{Last Name}}</p><p><strong>Client Email:</strong> <span class=\\\"no-link\\\">{{Email}}</span></p><p><strong>Client Message:</strong> {{Phone Number}}</p><p>Please respond to this inquiry promptly to maintain effective communication.</p>\",\n    \"tags\": [\n        \"{{First Name}}\",\n        \"{{Last Name}}\",\n        \"{{Email}}\",\n        \"{{Phone Number}}\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/emailTemplate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"emailTemplate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Templates",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/emailTemplate/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"emailTemplate",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Templates",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/emailTemplate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"emailTemplate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update My Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Contact Inquiry\",\n    \"subject\": \"New Contact Inquiry\",\n    \"body\": \"<h1>New Contact Inquiry!</h1><p>A potential client has reached out through our contact form. Please find the details below:</p><p><strong>Client First Name:</strong> {{First Name}}</p><p><strong>Client Last Name:</strong> {{Last Name}}</p><p><strong>Client Email:</strong> <span class=\\\"no-link\\\">{{Email}}</span></p><p><strong>Client Message:</strong> {{Phone Number}}</p><p>Please respond to this inquiry promptly to maintain effective communication.</p>\",\n    \"tags\": [\n        \"{{First Name}}\",\n        \"{{Last Name}}\",\n        \"{{Email}}\",\n        \"{{Phone Number}}\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/emailTemplate/me/9",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"emailTemplate",
+								"me",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Contact Inquiry\",\n    \"subject\": \"New Contact Inquiry\",\n    \"body\": \"<h1>New Contact Inquiry!</h1><p>A potential client has reached out through our contact form. Please find the details below:</p><p><strong>Client First Name:</strong> {{First Name}}</p><p><strong>Client Last Name:</strong> {{Last Name}}</p><p><strong>Client Email:</strong> <span class=\\\"no-link\\\">{{Email}}</span></p><p><strong>Client Message:</strong> {{Phone Number}}</p><p>Please respond to this inquiry promptly to maintain effective communication.</p>\",\n    \"tags\": [\n        \"{{First Name}}\",\n        \"{{Last Name}}\",\n        \"{{Email}}\",\n        \"{{Phone Number}}\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/emailTemplate/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"emailTemplate",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable My Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/emailTemplate/disable/me/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"emailTemplate",
+								"disable",
+								"me",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/emailTemplate/disable/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"emailTemplate",
+								"disable",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logs",
+			"item": [
+				{
+					"name": "Get All Logs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/log",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"log"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Error Logs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/log/error",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"log",
+								"error"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download Error Log",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/log/error/download/exceptions-2024-07-20.log",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"log",
+								"error",
+								"download",
+								"exceptions-2024-07-20.log"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Stats",
+			"item": [
+				{
+					"name": "Get My Stats",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/stats",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Stats Insights",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"totalEmployees\": 4,\n    \"activeEmployees\": 4,\n    \"nonActiveEmployees\": 0,\n    \"employeeStats\": [\n        {\n            \"id\": 27,\n            \"firstName\": \"Huzaifah\",\n            \"lastName\": \"Tariq\",\n            \"email\": \"huzaifahtariq08@gmail.com\",\n            \"isActive\": true,\n            \"stats\": {\n                \"emailOpenCount\": 0,\n                \"reportPhishingCount\": 0\n            }\n        },\n        {\n            \"id\": 48,\n            \"firstName\": \"Test\",\n            \"lastName\": \"Test\",\n            \"email\": \"test@gmail.com\",\n            \"isActive\": true,\n            \"stats\": {\n                \"emailOpenCount\": 0,\n                \"reportPhishingCount\": 0\n            }\n        },\n        {\n            \"id\": 49,\n            \"firstName\": \"Test\",\n            \"lastName\": \"Test\",\n            \"email\": \"test1@gmail.com\",\n            \"isActive\": true,\n            \"stats\": {\n                \"emailOpenCount\": 0,\n                \"reportPhishingCount\": 0\n            }\n        },\n        {\n            \"id\": 50,\n            \"firstName\": \"Test\",\n            \"lastName\": \"Test\",\n            \"email\": \"test2@gmail.com\",\n            \"isActive\": true,\n            \"stats\": {\n                \"emailOpenCount\": 0,\n                \"reportPhishingCount\": 0\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/stats/insights",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"stats",
+								"insights"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Stats",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/stats/27",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"stats",
+								"27"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Campaign Stats",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/stats/campaign/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"stats",
+								"campaign",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GPT",
+			"item": [
+				{
+					"name": "Email Template Help",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{accessToken}}"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refreshToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"impersonate\": \"HR Department\",\n    \"callToAction\": \"Please complete your annual review by clicking here.\",\n    \"consequences\": \"Failure to complete the review will result in a temporary suspension of your account.\",\n    \"urgency\": \"high\",\n    \"additionalContent\": \"We appreciate your prompt attention to this matter. If you have any questions, feel free to reach out to HR.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/gpt/emailTemplateHelp",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"gpt",
+								"emailTemplateHelp"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "accessToken",
+			"value": "null",
+			"type": "string"
+		},
+		{
+			"key": "refreshToken",
+			"value": "null",
+			"type": "string"
+		}
+	]
+}
